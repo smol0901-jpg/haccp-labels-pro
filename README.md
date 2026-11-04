@@ -2,49 +2,20 @@
 
 Модуль печати этикеток сроков годности для общепита (HACCP).
 
-**GitHub Pages:** https://smol0901-jpg.github.io/haccp-labels-pro/
+> **Security (2026-11-04):** из рабочей копии убраны API-ключи.  
+> Ключ Telegram-коннектора, попавший в историю git, **нужно ротировать** на стороне Netlify — он считался скомпрометированным (GitGuardian alert).
 
-## Возможности (Проход 1)
+## Важно
 
-- Сетка продуктов + быстрый поиск
-- Выбор условий хранения (холодильник / морозильник)
-- Назначение исполнителя
-- Ввод срока (дни / часы) + автоматический расчёт дат
-- Предпросмотр и «печать» этикетки
-- JSON-импорт продуктов и сотрудников
-- Журнал операций
-- Интеграция с Telegram-коннектором (уведомление после печати)
-
-## Как пользоваться
-
-1. Откройте вкладку **Продукты** → выберите позицию
-2. На вкладке **Печать** укажите условия, исполнителя и срок
-3. Нажмите **Предпросмотр** или **Печать**
-4. В **Админ** можно загрузить свои JSON-справочники
-
-## JSON-формат продуктов
-
-```json
-[
-  {
-    "sku": "001",
-    "name": "Кальмар ПФ",
-    "type": "semi_finished",
-    "shelf_life_days": 3,
-    "storage_temp_min": 2,
-    "storage_temp_max": 6,
-    "default_storage": "refrigerator"
-  }
-]
-```
+- Не коммитьте `x-api-key`, токены и webhook secrets в репозиторий.
+- Для Telegram: ключ только в env / Netlify Function secrets, в коде — placeholder.
 
 ## Стек
 
-- Чистый HTML + CSS + Vanilla JS
-- localStorage для данных
-- Telegram-коннектор: `telega-send.netlify.app`
+- HTML + CSS + Vanilla JS
+- localStorage
+- Telegram-коннектор через Netlify Function (ключ не в репо)
 
 ## Neural Architect Premium++
 
-Часть экосистемы Neural Architect.  
-Репозиторий: [haccp-labels-pro](https://github.com/smol0901-jpg/haccp-labels-pro)
+Часть экосистемы Neural Architect.
